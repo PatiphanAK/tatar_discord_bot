@@ -6,7 +6,7 @@ import (
 	"log"
 	application "mybot/content/application/Tatarbot"
 	"mybot/content/handlers"
-	services "mybot/content/services/Manybaht"
+	manybath_service "mybot/content/services/Manybaht"
 	"os"
 	"os/signal"
 	"syscall"
@@ -40,11 +40,14 @@ func main() {
 	defer session.Close()
 
 	// Setup Services
-	manySvc := services.NewManybahtService()
+	manySvc := manybath_service.NewManybahtService()
 	botService := application.NewTatarBotService(manySvc)
 
 	// Configure intents and handlers
-	session.Identify.Intents = discordgo.IntentsGuildMessages | discordgo.IntentsMessageContent
+	session.Identify.Intents = discordgo.IntentsGuildMessages |
+		discordgo.IntentsMessageContent |
+		discordgo.IntentsGuildVoiceStates |
+		discordgo.IntentsGuilds
 
 	// content.SetupMessageHandler(session)
 	session.AddHandler(onReady)

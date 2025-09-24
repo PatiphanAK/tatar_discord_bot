@@ -1,4 +1,4 @@
-package services
+package manybath_service
 
 import (
 	"log"

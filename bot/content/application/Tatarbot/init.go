@@ -1,18 +1,19 @@
 package application
 
-import services "mybot/content/services/Manybaht"
+import (
+	manybath_service "mybot/content/services/Manybaht"
+)
 
 type tatarBotService struct {
 	// botRepo  domain.RepositoryInterface
-	manybath *services.ManybahtService
+	manybath *manybath_service.ManybahtService
 	// authService domain.AuthenticationService // TODO: implement User role
 }
 
 func NewTatarBotService(
-	// repo domain.RepositoryInterface,
-	manybath *services.ManybahtService) *tatarBotService {
+	manybath *manybath_service.ManybahtService,
+) *tatarBotService {
 	return &tatarBotService{
-		// botRepo:  repo,
 		manybath: manybath,
 	}
 }

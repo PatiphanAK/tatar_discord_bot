@@ -15,7 +15,11 @@ func SetupMessageHandlers(s *discordgo.Session, bot application.TatarBotService)
 		}
 
 		if isCommand(m.Content) {
+
 			cmd := parseCommand(m.Content)
+			cmd.GuildID = m.GuildID
+			cmd.ChannelID = m.ChannelID
+			cmd.UserID = m.Author.ID
 			reply, err := bot.HandleCommand(cmd)
 			if err != nil {
 				reply = err.Error()

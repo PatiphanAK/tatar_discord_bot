@@ -1,14 +1,18 @@
 package application
 
-import "mybot/content/domain"
+import (
+	"mybot/content/domain"
+)
 
 func (s *tatarBotService) HandleCommand(cmd domain.BotCommand) (string, error) {
 	switch cmd.Name {
 	case "manybaht":
 		encoded := s.manybath.HandleCommand(cmd.Args)
 		return encoded, nil
+
 	case "play-gobot":
-		return "Playing Gobot!", nil
+		panic("ยังไม่ทำเร็วๆนี้")
+
 	default:
 		return "Unknown command", nil
 	}
