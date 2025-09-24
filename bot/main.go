@@ -7,6 +7,7 @@ import (
 	application "mybot/content/application/Tatarbot"
 	"mybot/content/handlers"
 	manybath_service "mybot/content/services/Manybaht"
+	music_services "mybot/content/services/Music"
 	"os"
 	"os/signal"
 	"syscall"
@@ -41,7 +42,8 @@ func main() {
 
 	// Setup Services
 	manySvc := manybath_service.NewManybahtService()
-	botService := application.NewTatarBotService(manySvc)
+	musicSvc := music_services.NewMusicService(session, "0.0.0.0:8000")
+	botService := application.NewTatarBotService(manySvc, musicSvc)
 
 	// Configure intents and handlers
 	session.Identify.Intents = discordgo.IntentsGuildMessages |

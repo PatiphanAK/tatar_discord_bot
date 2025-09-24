@@ -11,8 +11,11 @@ func (s *tatarBotService) HandleCommand(cmd domain.BotCommand) (string, error) {
 		return encoded, nil
 
 	case "play-gobot":
-		panic("ยังไม่ทำเร็วๆนี้")
-
+		reply, err := s.music.PlayMusic(cmd)
+		if err != nil {
+			return "", err
+		}
+		return reply, nil
 	default:
 		return "Unknown command", nil
 	}
