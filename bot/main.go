@@ -42,7 +42,7 @@ func main() {
 
 	// Setup Services
 	manySvc := manybath_service.NewManybahtService()
-	musicSvc := music_services.NewMusicService(session, "0.0.0.0:8000")
+	musicSvc := music_services.NewMusicService(session, "http://localhost:8080")
 	botService := application.NewTatarBotService(manySvc, musicSvc)
 
 	// Configure intents and handlers
