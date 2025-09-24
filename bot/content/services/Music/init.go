@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"mybot/content/domain"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/bwmarrin/discordgo"
@@ -49,6 +50,11 @@ type MusicService struct {
 func NewMusicService(session *discordgo.Session, apiBaseURL string) *MusicService {
 	if apiBaseURL == "" {
 		apiBaseURL = "http://localhost:8080" // Default music bot API
+	}
+
+	// Ensure URL has proper scheme
+	if !strings.HasPrefix(apiBaseURL, "http://") && !strings.HasPrefix(apiBaseURL, "https://") {
+		apiBaseURL = "http://" + apiBaseURL
 	}
 
 	return &MusicService{
