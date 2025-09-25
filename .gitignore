@@ -6,3 +6,6 @@ env
 .ropeproject
 .venv
 uv.lock
+.
+.zed***
+**/__pycache__

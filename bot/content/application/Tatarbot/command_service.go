@@ -16,6 +16,12 @@ func (s *tatarBotService) HandleCommand(cmd domain.BotCommand) (string, error) {
 			return "", err
 		}
 		return reply, nil
+	case "gobot-leave":
+		reply, err := s.music.LeaveVoiceChannel(cmd.GuildID)
+		if err != nil {
+			return "", err
+		}
+		return reply, nil
 	default:
 		return "Unknown command", nil
 	}
